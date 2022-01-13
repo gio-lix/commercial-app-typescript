@@ -1,26 +1,34 @@
 import type {NextPage} from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import axios from "axios";
-import {API_URL} from "../config";
 import {wrapper} from "../redux/store";
 import {fetchingData} from "../redux/actions";
 import {useSelector} from "react-redux";
-import {fetchData} from "../redux/reducer/fetchdata";
+import Layout from "../components/Layout";
+import Image from "next/image";
+import image from '../public/img.jpg'
 
 const Home: NextPage = () => {
     const {products} = useSelector((data: any) => data.fetchData)
-    console.log(products)
+    const {loading} = useSelector((state: any) => state.loadingReduce)
+    console.log('loading',loading)
 
     return (
-        <div>
+        <Layout>
+            <div className='w-full h-[500px] relative'>
+                <Image src={image} layout='fill' className='absolute' alt='image' />
+                <div className='absolute top-0 z-10 text-gray-400'>
+                    <p className='text-gray-900'> title</p>
+                    <p>This is a wider cart with supporting text below as a natural lead-in to
+                        additional content. this content is the a little bit longer.
+                    </p>
+                </div>
+                {/*<img src={image} alt="img"/>*/}
+            </div>
             {products?.map((el: any) => (
                 <div key={el.id}>
                     <p>{el.title}</p>
                 </div>
             ))}
-        </div>
+        </Layout>
     )
 }
 
