@@ -11,7 +11,7 @@ const Header: FC<IHeader> = () => {
 
     return (
         <>
-            <div className='h-14 w-full bg-indigo-50 flex items-center justify-between px-14'>
+            <div className='h-14 w-full bg-indigo-50 flex items-center justify-between px-2 ms:px-6 lg:px-14 '>
                 <div>
                     <p className='text-2xl font-semibold'>ECCOm</p>
                 </div>
