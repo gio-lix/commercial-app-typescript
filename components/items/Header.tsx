@@ -20,22 +20,22 @@ const Header: FC<IHeader> = () => {
                         <ul className='h-full flex items-center text-gray-500  space-x-5'>
                             <li>
                                 <Link href='/'>
-                                    <a className={`${pathname === '/' && 'text-black underline'}`}>Home</a>
+                                    <a className={`${pathname === '/' && 'text-black underline underline-offset-8'}`}>Home</a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href='/products'>
-                                    <a className={`${pathname === '/products' && 'text-black underline'}`}>Products</a>
+                                    <a className={`${pathname === '/products' && 'text-black underline underline-offset-8'}`}>Products</a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href='/about'>
-                                    <a className={`${pathname === '/about' && 'text-black underline'}`}>About</a>
+                                    <a className={`${pathname === '/about' && 'text-black underline underline-offset-8'}`}>About</a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href='/contact'>
-                                    <a className={`${pathname === '/contact' && 'text-black underline'}`}>Contact</a>
+                                    <a className={`${pathname === '/contact' && 'text-black underline underline-offset-8'}`}>Contact</a>
                                 </Link>
                             </li>
                         </ul>

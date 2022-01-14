@@ -14,12 +14,12 @@ const Home: NextPage = () => {
     return (
         <Layout>
             <div className='w-full h-[500px] relative'>
-                <Image src={image} layout='fill' className='absolute' alt='image' />
-                <div className='absolute top-0 z-10 text-gray-400'>
-                    <p className='text-gray-900'> title</p>
-                    <p>This is a wider cart with supporting text below as a natural lead-in to
-                        additional content. this content is the a little bit longer.
-                    </p>
+                <Image src={image} layout='fill' loading='lazy' className='absolute' alt='image' />
+                <div className='absolute w-full h-full flex items-center px-14 top-0 z-10 text-gray-400'>
+                    <div>
+                        <p className='text-white uppercase text-3xl'>New season arrivals</p>
+                        <p className='text-white uppercase text-xl'> check put all trends </p>
+                    </div>
                 </div>
                 {/*<img src={image} alt="img"/>*/}
             </div>
