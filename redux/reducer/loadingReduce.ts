@@ -12,9 +12,12 @@ export const loadingReduce = (state: ILoading = initialState, action: any) => {
 
     switch (action.type) {
         case LOADING_ON:
-            return {loading: true}
+            console.log('------------------------')
+            console.log('mollie')
+            return {...state,loading: true}
         case LOADING_OFF:
-            return {loading: false}
+            console.log('rebbecca')
+            return {...state,loading: false}
         default:
             return state
     }

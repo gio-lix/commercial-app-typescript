@@ -1,9 +1,9 @@
 interface Initial  {
-    products: {}[]
+    products: {}[],
 }
 
 const initialState: Initial = {
-    products: []
+    products: [],
 }
 
 export const fetchData = (state = initialState, action: any) => {

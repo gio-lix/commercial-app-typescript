@@ -1,15 +1,12 @@
 import type {NextPage} from 'next'
 import {wrapper} from "../redux/store";
 import {fetchingData} from "../redux/actions";
-import {useSelector} from "react-redux";
 import Layout from "../components/Layout";
 import Image from "next/image";
 import image from '../public/img.jpg'
 
 const Home: NextPage = () => {
-    const {products} = useSelector((data: any) => data.fetchData)
-    const {loading} = useSelector((state: any) => state.loadingReduce)
-    console.log('loading',loading)
+
 
     return (
         <Layout>
@@ -23,19 +20,9 @@ const Home: NextPage = () => {
                 </div>
                 {/*<img src={image} alt="img"/>*/}
             </div>
-            {products?.map((el: any) => (
-                <div key={el.id}>
-                    <p>{el.title}</p>
-                </div>
-            ))}
+
         </Layout>
     )
 }
 
 export default Home
-export const getServerSideProps = wrapper.getServerSideProps(store =>  async (ctx: any) => {
-    await store.dispatch(fetchingData())
-    return {
-        props: {data: null}
-    }
-})
