@@ -1,12 +1,14 @@
-import {NextPage} from "next";
+import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import Layout from "../../components/Layout";
 import {wrapper} from "../../redux/store";
 import {fetchingDataId} from "../../redux/actions";
 import {useSelector} from "react-redux";
+import {fetchProducts, fetchProductsId} from "../api";
 
 
 const Item: NextPage = () => {
     const {productsById} = useSelector((data: any) => data.fetchData)
+    console.log(productsById)
   return (
      <Layout>
         <div className='grid grid-cols-2 mt-10'>
@@ -28,8 +30,26 @@ const Item: NextPage = () => {
      </Layout>
   )
 }
+
 export default Item
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({query}: any) => {
-    await store.dispatch(fetchingDataId(query.id))
+
+// export const getStaticProps: GetStaticProps = async ({query}: any) => {
+//     console.log(query)
+//     const data = await fetchProductsId.getProductsId('1')
+//     return {
+//         props: {data}
+//     }
+// }
+export const getStaticProps = wrapper.getStaticProps(store => async ({params}: any) => {
+    await store.dispatch(fetchingDataId(params.id))
     return {props: {}}
 })
+export const getStaticPaths = async () => {
+    const data = await fetchProducts.getProducts()
+    const paths = data.map((el: any) => ({params: {id: el.id.toString()}}))
+    return {
+        paths,
+        fallback: false
+    }
+}
+
