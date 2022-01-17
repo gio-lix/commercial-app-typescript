@@ -21,3 +21,19 @@ export const productReducer = (state = initialState, action :any) => {
             return state
     }
 }
+
+const initialStateId: any = {
+    productsId: []
+}
+
+export const productReducerId = (state = initialStateId, action :any) => {
+    switch (action.type) {
+        case HYDRATE: {
+            return {...state, ...action.payload.productReducerId}
+        }
+        case productActionType.FETCH_PRODUCTS_SUCCESS_ID:
+            return {...state, productsId: action.payload}
+        default:
+            return state
+    }
+}
