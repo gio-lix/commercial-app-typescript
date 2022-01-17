@@ -1,36 +1,28 @@
-import { HYDRATE, createWrapper } from "next-redux-wrapper";
-import thunkMiddleware from "redux-thunk";
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import {fetchData} from "./reducer/fetchdata";
-import {loadingReduce} from "./reducer/loadingReduce";
+import {applyMiddleware, combineReducers, createStore, Middleware, StoreEnhancer} from "redux";
+import {createWrapper, MakeStore} from "next-redux-wrapper";
+import createSagaMiddleware from "@redux-saga/core";
+import {productReducer} from "./reducers/products/product-reducer";
+import {productsSaga} from "./reducers/products/products-saga";
 
-const bindMiddleware = (middleware: any) => {
-    if (process.env.NODE_ENV !== "production") {
-        const { composeWithDevTools } = require("redux-devtools-extension");
+const RootReducer = combineReducers({
+    productReducer
+})
+
+const bindMiddleware = (middleware: Middleware[]): StoreEnhancer => {
+    if (process.env.NODE_ENV !== 'production') {
+        const { composeWithDevTools } = require('redux-devtools-extension');
         return composeWithDevTools(applyMiddleware(...middleware));
     }
     return applyMiddleware(...middleware);
 };
 
-const combinedReducer = combineReducers({
-    fetchData,
-    loadingReduce
-});
 
-const rootReducer = (state: any, action: any) => {
-    if (action.type === HYDRATE) {
-        const nextState = {
-            ...state, // use previous state
-            ...action.payload, // apply delta from hydration
-        };
-        return nextState;
-    } else {
-        return combinedReducer(state, action);
-    }
+export const makeStore: MakeStore<any> = () => {
+    const sagaMiddleware = createSagaMiddleware();
+
+    const store: any = createStore(RootReducer, bindMiddleware([sagaMiddleware]));
+    store.sagaTask = sagaMiddleware.run(productsSaga);
+    return store;
 };
 
-
-const initStore = () => {
-    return createStore(rootReducer, bindMiddleware([thunkMiddleware]));
-};
-export const wrapper = createWrapper(initStore);
+export const wrapper = createWrapper<any>(makeStore, { debug: true });

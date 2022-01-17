@@ -8,12 +8,13 @@ interface IHeader {
 
 const Header: FC<IHeader> = () => {
     const {pathname} = useRouter()
+    const router = useRouter()
 
     return (
         <>
             <div className='h-14 w-full bg-indigo-50 flex items-center justify-between px-2 ms:px-6 lg:px-14 '>
                 <div>
-                    <p className='text-2xl font-semibold'>ECCOm</p>
+                    <p onClick={() => router.push('/')} className='text-2xl cursor-pointer font-semibold'>ECCOm</p>
                 </div>
                 <div>
                     <nav className='w-full h-full'>
