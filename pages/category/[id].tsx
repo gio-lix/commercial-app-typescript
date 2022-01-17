@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {wrapper} from "../../redux/store";
 import {requestProducts, requestProductsById} from "../../redux/reducers/products/action-type";
 import {END} from "redux-saga";
+import {fetchProducts} from "../api";
 
 
 const Item: NextPage = () => {
@@ -46,25 +47,27 @@ export default Item
 //     await store.dispatch(fetchingDataId(params.id))
 //     return {props: {}}
 // })
-export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ({params}: any) => {
+// export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ({params}: any) => {
+//     store.dispatch(requestProductsById(params.id))
+//     store.dispatch(END)
+//     await store.sagaTask.toPromise()
+//     return {
+//         props: {data: null},
+//     }
+// })
+
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(store => async ({params}: any) => {
     store.dispatch(requestProductsById(params.id))
     store.dispatch(END)
     await store.sagaTask.toPromise()
-    return {
-        props: {data: null},
-    }
+    return {props: {}, revalidate: 1}
 })
-
-// export const getStaticProps: GetStaticProps = wrapper.getStaticProps(store => async ({params}: any) => {
-//     await store.dispatch(fetchingDataId(params.id))
-//     return {props: {}, revalidate: 1}
-// })
-// export const getStaticPaths = async () => {
-//     const data = await fetchProducts.getProducts()
-//     const paths = data.map((el: any) => ({params: {id: el.id.toString()}}))
-//     return {
-//         paths,
-//         fallback: true
-//     }
-// }
+export const getStaticPaths = async () => {
+    const data = await fetchProducts.getProducts()
+    const paths = data.map((el: any) => ({params: {id: el.id.toString()}}))
+    return {
+        paths,
+        fallback: true
+    }
+}
 
