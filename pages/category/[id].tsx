@@ -25,7 +25,7 @@ const Item: NextPage = () => {
                 <div>
                     <p className='text-3xl font-semibold text-gray-400'>{productsId?.category}</p>
                     <p className='text-xl text-gray-600'>{productsId?.title}</p>
-                    <p className='text-gray-600 font-bold'>rating {productsId?.rating.rate}</p>
+                    <p className='text-gray-600 font-bold'>rating {productsId?.rating?.rate}</p>
                     <p className='text-gray-600 font-bold my-5'><span className='text-xl'>$</span> {productsId?.price}
                     </p>
                     <p className='text-gray-400 text-cm'> {productsId?.description} </p>
@@ -42,11 +42,6 @@ const Item: NextPage = () => {
 
 export default Item
 
-// export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ({params}: any) => {
-//     // console.log('req.cookies',parseCookies(req.cookies.demo) )
-//     await store.dispatch(fetchingDataId(params.id))
-//     return {props: {}}
-// })
 // export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ({params}: any) => {
 //     store.dispatch(requestProductsById(params.id))
 //     store.dispatch(END)
