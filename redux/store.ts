@@ -5,15 +5,19 @@ import {productReducer, productReducerId} from "./reducers/products/product-redu
 import {productsSaga} from "./reducers/products/products-saga";
 import {productIdSaga} from "./reducers/products/product-id-saga";
 import {all, fork} from "@redux-saga/core/effects";
+import {cartSaga} from "./reducers/cart/cart-saga";
+import {cartReducer} from "./reducers/cart/cart-reducer";
 
 const RootReducer = combineReducers({
     productReducer,
-    productReducerId
+    productReducerId,
+    cartReducer
 })
 
 const sagasList = [
     productsSaga,
-    productIdSaga
+    productIdSaga,
+    cartSaga
 
 ];
 export default function* rootSaga() {

@@ -5,15 +5,15 @@ import {wrapper} from "../../redux/store";
 import {requestProducts, requestProductsById} from "../../redux/reducers/products/action-type";
 import {END} from "redux-saga";
 import {fetchProducts} from "../api";
+import {fetchCartRequest} from "../../redux/reducers/cart/cart-action-type";
 
 
 const Item: NextPage = () => {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const {productsId} = useSelector((data: any) => data.productReducerId)
-    console.log(productsId)
 
     const addProductsItem = (product: any) => {
-        // dispatch(addCart({...product, quantity: 1}))
+        dispatch(fetchCartRequest({product}))
     }
 
     return (
@@ -30,9 +30,11 @@ const Item: NextPage = () => {
                     </p>
                     <p className='text-gray-400 text-cm'> {productsId?.description} </p>
                     <div className='flex justify-center my-3 space-x-3'>
-                        <button onClick={() => addProductsItem(productsId)} className='px-2 py-0.5 font-semibold border border-gray-500 text-gray-500'>Add to cart
+                        <button
+                            onClick={() => addProductsItem(productsId)}
+                            className='px-2 py-0.5 font-semibold border border-gray-500 hover:bg-gray-600 hover:text-white text-gray-500'>Add to cart
                         </button>
-                        <button className='px-2 py-0.5 text-white bg-gray-500 font-semibold'>Go to cart</button>
+                        <button className='px-2 py-0.5 text-white bg-gray-500  hover:bg-gray-600 font-semibold'>Go to cart</button>
                     </div>
                 </div>
             </div>

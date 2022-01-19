@@ -11,5 +11,4 @@ export const fetchProducts = {
         return data
     }
 }
-
 export {}

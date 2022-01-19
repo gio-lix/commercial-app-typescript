@@ -1,12 +1,14 @@
 import {FC} from "react"
 import Link from 'next/link'
 import {useRouter} from "next/router";
+import {useSelector} from "react-redux";
 
 interface IHeader {
 
 }
 
 const Header: FC<IHeader> = () => {
+    const {cart} = useSelector((state: any) => state.cartReducer)
     const {pathname} = useRouter()
     const router = useRouter()
 
@@ -47,7 +49,10 @@ const Header: FC<IHeader> = () => {
                         <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>Login</button>
                     </div>
                     <div>
-                        <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>Cart</button>
+                        <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>
+                            Cart
+                            <span className='ml-1'>{cart.length}</span>
+                        </button>
                     </div>
                 </div>
             </div>

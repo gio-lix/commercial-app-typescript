@@ -1,4 +1,4 @@
-export interface IProductsTypes {
+export type IIProductsTypes = {
     id: number,
     title: string,
     price: number,
@@ -7,3 +7,6 @@ export interface IProductsTypes {
     image: string,
     rating: {}
 }
+export type NIProductsTypes = {
+    qty: number
+} & IIProductsTypes
