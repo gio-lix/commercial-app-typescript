@@ -74,14 +74,16 @@ const Header: FC<IHeader> = () => {
                 {open && (
                     <>
                         <div onClick={() => setOpen(false)} className='fixed top-0 left-0 bottom-0 z-20 w-full  '>   </div>
-                        <div className={`absolute top-14 right-6 z-30 w-60 h-auto bg-white shadow-2xl p-1`}>
-                            <div className='flex justify-between'>
-                                <p>Items</p>
-                                <span>{cartItems(cart)}</span>
+                        <div className={`absolute  top-14 right-6 z-30 w-72  bg-white shadow-2xl p-1`}>
+                            <div className='absolute top-0 left-0 px-2 w-full flex justify-between bg-indigo-50 '>
+                                <p className='font-bold'>Items</p>
+                                <span  className='font-bold'>{cartItems(cart)}</span>
                             </div>
-                            {cart.map((el: any) => (
-                                <CartPage {...el} key={el.id} />
-                            ))}
+                            <div className=' max-h-96 overflow-y-auto scrollbar-hide mt-6 '>
+                                {cart.map((el: any) => (
+                                    <CartPage {...el} key={el.id} />
+                                ))}
+                            </div>
                             <div className='h-7 flex justify-between items-center border-t border-gray-300'>
                                 <p className='font-bold text-sm '>Total</p>
                                 <p>  <span className='text-gray-800 font-bold px-1'>$</span>{totalPrice(cart)}</p>
