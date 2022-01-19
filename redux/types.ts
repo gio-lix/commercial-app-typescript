@@ -1,4 +1,4 @@
-export type IIProductsTypes = {
+export type IProductsTypes = {
     id: number,
     title: string,
     price: number,
@@ -9,4 +9,4 @@ export type IIProductsTypes = {
 }
 export type NIProductsTypes = {
     qty: number
-} & IIProductsTypes
+} & IProductsTypes

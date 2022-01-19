@@ -5,4 +5,4 @@ export const cartActionType = {
 }
 
 export const fetchCartRequest = (data: any) => ({type: cartActionType.CART_REQUEST, payload: data})
-export const fetchCArtDelete = () => ({type: cartActionType.CART_REQUEST})
+// export const fetchCArtDelete = () => ({type: cartActionType.CART_REQUEST})
