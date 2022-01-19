@@ -1,17 +1,10 @@
-import {FC} from "react"
+import {FC, useEffect, useRef, useState} from "react"
 import {ShoppingCartIcon} from "@heroicons/react/solid";
 import {useRouter} from "next/router";
+import {IProductsTypes} from "../../redux/types";
 
 interface IProductsPage {
-    str: {
-        id: number,
-        title: string,
-        price: number,
-        description: string,
-        category: string,
-        image: string,
-        rating: any
-    }
+    str: IProductsTypes
 }
 
 const ProductsPage: FC<IProductsPage> = ({str}) => {
@@ -19,6 +12,9 @@ const ProductsPage: FC<IProductsPage> = ({str}) => {
     const handleClick = (id: number) => {
         router.push(`/category/${id}`)
     }
+
+
+
     return (
         <>
             <div key={str.id} className='flex justify-center items-center h-96 group'>

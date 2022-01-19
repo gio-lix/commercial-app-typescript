@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {NextPage} from "next";
 import Layout from "../components/Layout";
 import {END} from "redux-saga";
@@ -12,10 +12,13 @@ import {IProductsTypes} from "../redux/types";
 const Products: NextPage = () => {
     const {products} = useSelector((data:any) => data.productReducer)
     const [filter, setFilter] = useState<IProductsTypes[]>(products);
+
     const filterData = (pro: string) => {
         const productsData = products.filter((el: IProductsTypes) => el.category === pro)
         setFilter(productsData)
     }
+
+
 
     return (
         <Layout>
