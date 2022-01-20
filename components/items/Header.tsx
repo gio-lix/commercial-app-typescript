@@ -33,10 +33,14 @@ const Header: FC<IHeader> = () => {
     return (
         <>
             <div className={`${pathname === '/products' && 'fixed top-0 z-20'}  h-14 w-full bg-indigo-50 flex items-center justify-between px-2 ms:px-6 lg:px-14 `}>
+                <button className='w-10 h-10   md:hidden text-3xl flex item-center justify-center'>
+                    <p className='font-bold hover:text-green-500 '>&times;</p>
+                </button>
                 <div>
                     <p onClick={() => router.push('/')} className='text-2xl cursor-pointer font-semibold'>ECCOm</p>
                 </div>
-                <div>
+
+                <div className='hidden md:inline-flex'>
                     <nav className='w-full h-full'>
                         <ul className='h-full flex items-center text-gray-500  space-x-5'>
                             <li>
@@ -64,7 +68,7 @@ const Header: FC<IHeader> = () => {
                 </div>
                 <div className='flex space-x-3'>
                         <div>
-                            <button onClick={handleLoginOpen} className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>Login</button>
+                            <button onClick={handleLoginOpen} className='w-20 h-7 border border-black hover:text-black hover:bg-green-100 font-semibold'>Login</button>
                         </div>
                     <div>
                         <button disabled={orderPath} onClick={handleOpen}
@@ -78,7 +82,7 @@ const Header: FC<IHeader> = () => {
                     <>
                         <div className={`fixed top-0 left-0 z-20 w-full h-full flex justify-center items-center `}>
                             <div onClick={() => setLoginOpen(false)} className='fixed bg-black bg-opacity-40 top-0 left-0 bottom-0 z-30 w-full h-full'>   </div>
-                            <div className='absolute z-40 w-3/6 h-auto bg-white pb-4 p-3'>
+                            <div className='absolute z-40 w-11/12 md:w-3/6 h-auto bg-white pb-4 p-3'>
                                 <div className='flex justify-between items-center text-gray-500'>
                                     <button onClick={() => setLoginOpen(false)} className='text-2xl '>&times;</button>
                                 </div>

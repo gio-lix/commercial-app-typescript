@@ -25,24 +25,27 @@ const Products: NextPage = () => {
             <div className='px-2 ms:px-6 lg:px-14 '>
                 <p className='text-3xl text-center my-4'>Latest Products</p>
                 <hr/>
-                <div className='flex space-x-3 justify-center mt-10'>
-                    <button onClick={() => setFilter(products)}
-                            className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>All
-                    </button>
-                    <button onClick={() => filterData("men's clothing")}
-                            className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Men&apos;s
-                        Clothing
-                    </button>
-                    <button onClick={() => filterData("women's clothing")}
-                            className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Women&apos;s
-                        Clothing
-                    </button>
-                    <button onClick={() => filterData("jewelery")}
-                            className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Jewelery
-                    </button>
-                    <button onClick={() => filterData("electronics")}
-                            className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Electronic
-                    </button>
+
+                <div className=' flex space-x-3 justify-center mt-10  '>
+                    <div className='hidden md:block flex space-x-4'>
+                        <button onClick={() => setFilter(products)}
+                                className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>All
+                        </button>
+                        <button onClick={() => filterData("men's clothing")}
+                                className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Men&apos;s
+                            Clothing
+                        </button>
+                        <button onClick={() => filterData("women's clothing")}
+                                className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Women&apos;s
+                            Clothing
+                        </button>
+                        <button onClick={() => filterData("jewelery")}
+                                className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Jewelery
+                        </button>
+                        <button onClick={() => filterData("electronics")}
+                                className='px-5 py-1 text-sm rounded  border border-gray-600 hover:bg-gray-800 hover:text-white'>Electronic
+                        </button>
+                    </div>
                 </div>
                 <div className='grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4  justify-center gap-y-6 my-6 '>
                     {filter?.map((el: IProductsTypes) => (

@@ -18,17 +18,17 @@ const Item: NextPage = () => {
 
     return (
         <Layout>
-            <div className='grid grid-cols-2 mt-14'>
-                <div className='flex justify-center'>
+            <div className='grid grid-cols-2 mt-14 px-2'>
+                <div className=' flex justify-center  col-span-2 md:col-span-1'>
                     <img src={productsId?.image} className='h-72 w-72' alt="img"/>
                 </div>
-                <div>
+                <div className=' col-span-2 md:col-span-1'>
                     <p className='text-3xl font-semibold text-gray-400'>{productsId?.category}</p>
                     <p className='text-xl text-gray-600'>{productsId?.title}</p>
                     <p className='text-gray-600 font-bold'>rating {productsId?.rating?.rate}</p>
                     <p className='text-gray-600 font-bold my-5'><span className='text-xl'>$</span> {productsId?.price}
                     </p>
-                    <p className='text-gray-400 text-cm'> {productsId?.description} </p>
+                    <p className='text-gray-400   text-cm'> {productsId?.description} </p>
                     <div className='flex justify-center my-3 space-x-3'>
                         <button
                             onClick={() => addProductsItem(productsId)}

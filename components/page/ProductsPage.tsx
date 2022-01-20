@@ -19,7 +19,7 @@ const ProductsPage: FC<IProductsPage> = ({str}) => {
         <>
             <div key={str.id} className='flex justify-center items-center h-96 group'>
                 <div
-                    className='relative w-full h-full flex flex-col w-64 border border-gray-200 px-1  hover:shadow-2xl'>
+                    className='relative w-full h-full flex flex-col w-80 sm:w-64 border border-gray-200 px-1  hover:shadow-2xl'>
                     <img  src={str.image} alt="img" className='h-60 w-full'/>
                     <p className='text-sm font-semibold'>{str.title}</p>
                     <p>$ {str.price}</p>
