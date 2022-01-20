@@ -1,2 +1,2 @@
 
-export const API_URL =  process.env.AUTH0_BASE_URL
+export const API_URL = 'https://fakestoreapi.com'
