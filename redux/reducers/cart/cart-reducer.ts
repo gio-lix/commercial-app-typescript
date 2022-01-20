@@ -12,6 +12,7 @@ const initialState: ICart = {
 export const cartReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case cartActionType.CART_SUCCESS:
+            console.log('action.payload', action.payload)
             const product = action.payload.product
             const exist = state.cart.find((x: any) => x.id === product.id)
             if (exist) {

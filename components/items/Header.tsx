@@ -3,8 +3,7 @@ import Link from 'next/link'
 import {useRouter} from "next/router";
 import {useSelector} from "react-redux";
 import CartPage from "../page/cartPage";
-import {NIProductsTypes} from "../../redux/types";
-import {useUser, withPageAuthRequired} from "@auth0/nextjs-auth0";
+import LoginForm from "./LoginForm";
 
 interface IHeader {
 
@@ -12,13 +11,12 @@ interface IHeader {
 
 const Header: FC<IHeader> = () => {
     const [open, setOpen] = useState<boolean>(false);
+    const [loginOpen, setLoginOpen] = useState<boolean>(false);
     const {cart} = useSelector((state: any) => state.cartReducer)
     const {pathname} = useRouter()
     const router = useRouter()
     const orderPath = pathname === '/order'
 
-    const {user,error, isLoading} = useUser()
-    console.log(user)
 
     const cartItems = (item: string) => {
         return  item.length > 0 && item.length
@@ -29,6 +27,8 @@ const Header: FC<IHeader> = () => {
     }
 
     const handleOpen = () => setOpen(!open)
+    const handleLoginOpen = () => setLoginOpen(!loginOpen)
+
 
     return (
         <>
@@ -63,28 +63,9 @@ const Header: FC<IHeader> = () => {
                     </nav>
                 </div>
                 <div className='flex space-x-3'>
-                    {(user && !isLoading) ? (
-                        <div className='flex space-x-3'>
-                            <p>{user.nickname}</p>
-                            <div>
-                                <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>
-                                    <Link href="/api/auth/logout">
-                                        <a >Logout</a>
-                                    </Link>
-                                </button>
-
-                            </div>
-                        </div>
-                    ) : null}
-                    {(!user && !isLoading) ? (
                         <div>
-                            <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>
-                                <Link href="/api/auth/login">
-                                    <a >Login</a>
-                                </Link>
-                            </button>
+                            <button onClick={handleLoginOpen} className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>Login</button>
                         </div>
-                    ) : null}
                     <div>
                         <button disabled={orderPath} onClick={handleOpen}
                                 className={`${orderPath ? ' bg-gray-300 text-white' : '  hover:bg-green-100 '} border border-black font-semibold w-20 h-7 `}>
@@ -93,6 +74,21 @@ const Header: FC<IHeader> = () => {
                         </button>
                     </div>
                 </div>
+                {loginOpen && (
+                    <>
+                        <div className={`fixed top-0 left-0 z-20 w-full h-full flex justify-center items-center `}>
+                            <div onClick={() => setLoginOpen(false)} className='fixed bg-black bg-opacity-40 top-0 left-0 bottom-0 z-30 w-full h-full'>   </div>
+                            <div className='absolute z-40 w-3/6 h-auto bg-white pb-4 p-3'>
+                                <div className='flex justify-between items-center text-gray-500'>
+                                    <button onClick={() => setLoginOpen(false)} className='text-2xl '>&times;</button>
+                                </div>
+                                <div>
+                                    <LoginForm />
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )}
                 {open && (
                     <>
                         <div onClick={() => setOpen(false)} className='fixed top-0 left-0 bottom-0 z-20 w-full  '>   </div>
@@ -129,6 +125,4 @@ const Header: FC<IHeader> = () => {
         </>
     )
 }
-
-
 export default Header

@@ -14,7 +14,6 @@ export const cartActionType = {
 
 export const fetchCartRequest = (data: any) => ({type: cartActionType.CART_REQUEST, payload: data})
 export const fetchCartDelete = (id: any) => {
-    console.log('id', id)
     return {type: cartActionType.CART_DELETE_REQUEST, payload: id}
 }
 export const fetchCartQuantity = (id: any) => ({type: cartActionType.CART_INCREASE_QUANTITY_REQUEST, payload: id})

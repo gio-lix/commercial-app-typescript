@@ -3,6 +3,7 @@ import {cartActionType} from "./cart-action-type";
 import {Action} from "redux";
 
 function* putCart(action: any) {
+    console.log('action', action.payload)
     yield put({type: cartActionType.CART_SUCCESS, payload: action.payload})
 }
 function* updateCart(action: any) {
