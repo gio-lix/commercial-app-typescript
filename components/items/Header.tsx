@@ -65,7 +65,7 @@ const Header: FC<IHeader> = () => {
                     </div>
                     <div>
                         <button disabled={orderPath} onClick={handleOpen}
-                                className={`${orderPath ? ' bg-gray-300 text-white' : ' hover:text-white hover:bg-green-500 '} border border-black font-semibold w-20 h-7 `}>
+                                className={`${orderPath ? ' bg-gray-300 text-white' : '  hover:bg-green-100 '} border border-black font-semibold w-20 h-7 `}>
                             Cart
                             <span className='ml-1'>{cartItems(cart)}</span>
                         </button>
@@ -74,29 +74,34 @@ const Header: FC<IHeader> = () => {
                 {open && (
                     <>
                         <div onClick={() => setOpen(false)} className='fixed top-0 left-0 bottom-0 z-20 w-full  '>   </div>
-                        <div className={`absolute  top-14 right-6 z-30 w-72  bg-white shadow-2xl p-1`}>
-                            <div className='absolute top-0 left-0 px-2 w-full flex justify-between bg-indigo-50 '>
-                                <p className='font-bold'>Items</p>
-                                <span  className='font-bold'>{cartItems(cart)}</span>
-                            </div>
-                            <div className=' max-h-96 overflow-y-auto scrollbar-hide mt-6 '>
-                                {cart.map((el: any) => (
-                                    <CartPage {...el} key={el.id} />
-                                ))}
-                            </div>
-                            <div className='h-7 flex justify-between items-center border-t border-gray-300'>
-                                <p className='font-bold text-sm '>Total</p>
-                                <p>  <span className='text-gray-800 font-bold px-1'>$</span>{totalPrice(cart)}</p>
-                            </div>
-                            <div className='h-7 flex justify-between items-center '>
-                               <button onClick={() => router.push('/order')} className='w-20 py-0.5 bg-gray-400 text-white hover:bg-gray-900 '>Orders</button>
-                               <button className='w-20 py-0.5 bg-gray-400 text-white hover:bg-gray-900 '>Check out</button>
-                            </div>
+                        <div className={`absolute   top-14 right-6 z-30 w-72   bg-white shadow-2xl p-1`}>
+                            {cart.length > 0 ? (
+                                <>
+                                    <div className='absolute top-0 left-0 px-2 w-full flex justify-between bg-indigo-50 '>
+                                        <p className='font-bold'>Items</p>
+                                        <span  className='font-bold'>{cartItems(cart)}</span>
+                                    </div>
+                                    <div className=' max-h-96 overflow-y-auto scrollbar-hide mt-6 '>
+                                        {cart.map((el: any) => (
+                                            <CartPage {...el} key={el.id} />
+                                        ))}
+                                    </div>
+                                    <div className='h-7 flex justify-between items-center border-t border-gray-300'>
+                                        <p className='font-bold text-sm '>Total</p>
+                                        <p>  <span className='text-gray-800 font-bold px-1'>$</span>{totalPrice(cart).toFixed(2)}</p>
+                                    </div>
+                                    <div className='h-7 flex justify-between items-center bg-white  '>
+                                        <button onClick={() => router.push('/order')} className='w-20 py-0.5 bg-gray-400 text-white hover:bg-gray-900 '>Orders</button>
+                                        <button className='w-20 py-0.5 bg-gray-400 text-white hover:bg-gray-900 '>Check out</button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className='h-20 bg-white flex items-center justify-center'>
+                                    <p className='text-xl text-gray-300'>Cart Is Empty</p>
+                                </div>
+                            )}
                         </div>
-
                     </>
-
-
                 )}
             </div>
         </>
