@@ -1,10 +1,12 @@
-import type {NextPage} from 'next'
+import type {GetServerSideProps, NextPage} from 'next'
 import Layout from "../components/Layout";
 import Image from "next/image";
 import image from '../public/img.jpg'
+import {useUser, withPageAuthRequired} from "@auth0/nextjs-auth0";
+import Header from "../components/items/Header";
+import Order from "./order";
 
 const Home: NextPage = () => {
-
 
     return (
         <Layout>
@@ -23,3 +25,4 @@ const Home: NextPage = () => {
 }
 
 export default Home
+

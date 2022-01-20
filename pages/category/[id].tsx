@@ -6,11 +6,15 @@ import {requestProducts, requestProductsById} from "../../redux/reducers/product
 import {END} from "redux-saga";
 import {fetchProducts} from "../api";
 import {fetchCartRequest} from "../../redux/reducers/cart/cart-action-type";
+import {useUser} from "@auth0/nextjs-auth0";
+import {useRouter} from "next/router";
 
 
 const Item: NextPage = () => {
     const dispatch = useDispatch()
+    const router = useRouter()
     const {productsId} = useSelector((data: any) => data.productReducerId)
+    const {user,error, isLoading} = useUser()
 
     const addProductsItem = (product: any) => {
         dispatch(fetchCartRequest({product}))
@@ -31,8 +35,11 @@ const Item: NextPage = () => {
                     <p className='text-gray-400 text-cm'> {productsId?.description} </p>
                     <div className='flex justify-center my-3 space-x-3'>
                         <button
+                            disabled={!user}
                             onClick={() => addProductsItem(productsId)}
-                            className='px-2 py-0.5 font-semibold border border-gray-500 hover:bg-gray-600 hover:text-white text-gray-500'>Add to cart
+                            className='px-2 py-0.5 font-semibold border border-gray-500 hover:bg-gray-600 hover:text-white text-gray-500'>
+                            {user ? <p>Add to cart</p> : <p onClick={() => router.push('/api/auth/login')}>Login</p>}
+
                         </button>
                         <button className='px-2 py-0.5 text-white bg-gray-500  hover:bg-gray-600 font-semibold'>Go to cart</button>
                     </div>

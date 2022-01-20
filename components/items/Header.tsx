@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import {useSelector} from "react-redux";
 import CartPage from "../page/cartPage";
 import {NIProductsTypes} from "../../redux/types";
+import {useUser, withPageAuthRequired} from "@auth0/nextjs-auth0";
 
 interface IHeader {
 
@@ -15,6 +16,9 @@ const Header: FC<IHeader> = () => {
     const {pathname} = useRouter()
     const router = useRouter()
     const orderPath = pathname === '/order'
+
+    const {user,error, isLoading} = useUser()
+    console.log(user)
 
     const cartItems = (item: string) => {
         return  item.length > 0 && item.length
@@ -59,9 +63,24 @@ const Header: FC<IHeader> = () => {
                     </nav>
                 </div>
                 <div className='flex space-x-3'>
-                    <div>
-                        <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>Login</button>
-                    </div>
+                    {(user && !isLoading) ? (
+                        <div className='flex space-x-3'>
+                            <p>{user.nickname}</p>
+                            <div>
+                                <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>
+                                    <a href="/api/auth/logout">Logout</a>
+                                </button>
+
+                            </div>
+                        </div>
+                    ) : null}
+                    {(!user && !isLoading) ? (
+                        <div>
+                            <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>
+                                <a href="/api/auth/login">Login</a>
+                            </button>
+                        </div>
+                    ) : null}
                     <div>
                         <button disabled={orderPath} onClick={handleOpen}
                                 className={`${orderPath ? ' bg-gray-300 text-white' : '  hover:bg-green-100 '} border border-black font-semibold w-20 h-7 `}>
@@ -106,4 +125,6 @@ const Header: FC<IHeader> = () => {
         </>
     )
 }
+
+
 export default Header

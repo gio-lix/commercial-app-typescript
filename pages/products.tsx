@@ -64,3 +64,4 @@ export const getStaticProps = wrapper.getStaticProps(store => async (ctx: any) =
         revalidate: 1
     }
 })
+
