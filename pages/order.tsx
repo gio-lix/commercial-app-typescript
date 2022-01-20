@@ -2,14 +2,11 @@ import {NextPage} from "next";
 import Layout from "../components/Layout";
 import CartPage from "../components/page/cartPage";
 import {useSelector} from "react-redux";
-import {NIProductsTypes} from "../redux/types";
 
 const Order: NextPage = () => {
     const {cart} = useSelector((state: any) => state.cartReducer)
-    const totalPrice = (item: any) => {
-        return item.reduce((acc: any, a:NIProductsTypes) => {
-            return  acc += a.price
-        },0)
+    const newTotalPrice = (item: any) => {
+        return item.map((e: any) => e.price * e.qty).reduce((a: any, b: any) => a + b, 0).toFixed(2)
     }
     return (
      <Layout>
@@ -24,7 +21,7 @@ const Order: NextPage = () => {
                      <div className='sticky top-14 w-full h-36 bg-indigo-50 border border-gray-400'>
                          <div className='flex justify-between'>
                              <p>Total Price</p>
-                             <p><span className='font-bold px-1'>$</span>{totalPrice(cart).toFixed(2)}</p>
+                             <p><span className='font-bold px-1'>$</span>{newTotalPrice(cart)}</p>
                          </div>
                      </div>
                  </div>

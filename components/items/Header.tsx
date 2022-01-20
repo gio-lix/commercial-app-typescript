@@ -20,11 +20,10 @@ const Header: FC<IHeader> = () => {
         return  item.length > 0 && item.length
     }
 
-    const totalPrice = (item: any) => {
-        return item.reduce((acc: any, a:NIProductsTypes) => {
-            return acc += a.price
-        },0)
+    const newTotalPrice = (item: any) => {
+        return item.map((e: any) => e.price * e.qty).reduce((a: any, b: any) => a + b, 0).toFixed(2)
     }
+
     const handleOpen = () => setOpen(!open)
 
     return (
@@ -88,7 +87,7 @@ const Header: FC<IHeader> = () => {
                                     </div>
                                     <div className='h-7 flex justify-between items-center border-t border-gray-300'>
                                         <p className='font-bold text-sm '>Total</p>
-                                        <p>  <span className='text-gray-800 font-bold px-1'>$</span>{totalPrice(cart).toFixed(2)}</p>
+                                        <p>  <span className='text-gray-800 font-bold px-1'>$</span>{newTotalPrice(cart)}</p>
                                     </div>
                                     <div className='h-7 flex justify-between items-center bg-white  '>
                                         <button onClick={() => router.push('/order')} className='w-20 py-0.5 bg-gray-400 text-white hover:bg-gray-900 '>Orders</button>
