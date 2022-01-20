@@ -68,7 +68,9 @@ const Header: FC<IHeader> = () => {
                             <p>{user.nickname}</p>
                             <div>
                                 <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>
-                                    <a href="/api/auth/logout">Logout</a>
+                                    <Link href="/api/auth/logout">
+                                        <a >Logout</a>
+                                    </Link>
                                 </button>
 
                             </div>
@@ -77,7 +79,9 @@ const Header: FC<IHeader> = () => {
                     {(!user && !isLoading) ? (
                         <div>
                             <button className='w-20 h-7 border border-black hover:text-white hover:bg-green-500 font-semibold'>
-                                <a href="/api/auth/login">Login</a>
+                                <Link href="/api/auth/login">
+                                    <a >Login</a>
+                                </Link>
                             </button>
                         </div>
                     ) : null}
