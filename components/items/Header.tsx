@@ -1,21 +1,25 @@
-import {FC, SyntheticEvent, useEffect, useState} from "react"
+import {FC, SyntheticEvent, useEffect, useRef, useState} from "react"
 import Link from 'next/link'
 import {useRouter} from "next/router";
 import {useSelector} from "react-redux";
 import CartPage from "../page/cartPage";
 import LoginForm from "./LoginForm";
-
+import {SearchIcon} from "@heroicons/react/solid";
 interface IHeader {
 
 }
 
 const Header: FC<IHeader> = () => {
+    const searchRef = useRef<HTMLInputElement | any>(null);
+    const focRef = useRef<HTMLInputElement | any>(null);
     const [open, setOpen] = useState<boolean>(false);
+    const [search, setSearch] = useState<boolean>(false);
     const [loginOpen, setLoginOpen] = useState<boolean>(false);
     const {cart} = useSelector((state: any) => state.cartReducer)
     const {pathname} = useRouter()
     const router = useRouter()
     const orderPath = pathname === '/order'
+    const headerPath = pathname === '/'
 
 
     const cartItems = (item: string) => {
@@ -26,26 +30,43 @@ const Header: FC<IHeader> = () => {
         return item.map((e: any) => e.price * e.qty).reduce((a: any, b: any) => a + b, 0).toFixed(2)
     }
 
-    const handleOpen = () => setOpen(!open)
-    const handleLoginOpen = () => setLoginOpen(!loginOpen)
+    const handleOpen = () => {
+        setOpen(!open)
+        setSearch(false)
+    }
+    const handleLoginOpen = () => {
+        setLoginOpen(!loginOpen)
+        setSearch(false)
+    }
+    const handleClickSearch = () => setSearch(!search)
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (search) searchRef.current.focus()
+        }, 500)
+        window.addEventListener("click", handleWindowClick)
+        return () => window.removeEventListener('click', handleWindowClick)
+    }, [search])
+    const handleWindowClick = (e: any) => {
+        if (!e.path.includes(focRef.current)) setSearch(false)
+    }
 
 
     return (
         <>
-            <div className={`${pathname === '/products' && 'fixed top-0 z-20'}  h-14 w-full bg-indigo-50 flex items-center justify-between px-2 ms:px-6 lg:px-14 `}>
+            <div className={`${headerPath && ' fixed  bg-opacity-0 z-40  ' }  h-14 w-full flex items-center justify-between px-2 ms:px-6 lg:px-14 `}>
                 <button className='w-10 h-10   md:hidden text-3xl flex item-center justify-center'>
                     <p className='font-bold hover:text-green-500 '>&times;</p>
                 </button>
                 <div>
-                    <p onClick={() => router.push('/')} className='text-2xl cursor-pointer font-semibold'>ECCOm</p>
+                    <p onClick={() => router.push('/')} className={`${headerPath && 'text-white'} text-2xl cursor-pointer font-semibold`}>ECCOm</p>
                 </div>
-
                 <div className='hidden md:inline-flex'>
-                    <nav className='w-full h-full'>
-                        <ul className='h-full flex items-center text-gray-500  space-x-5'>
+                    <nav className='w-full h-full '>
+                        <ul className={ `${pathname === '/' ? 'text-white' : 'text-gray-400'} h-full flex items-center   space-x-5`}>
                             <li>
                                 <Link href='/'>
-                                    <a className={`${pathname === '/' && 'text-black underline underline-offset-8'}`}>Home</a>
+                                    <a className={`${pathname === '/' && 'text-green-400 underline underline-offset-8'} `}>Home</a>
                                 </Link>
                             </li>
                             <li>
@@ -66,10 +87,22 @@ const Header: FC<IHeader> = () => {
                         </ul>
                     </nav>
                 </div>
-                <div className='flex space-x-3'>
-                        <div>
-                            <button onClick={handleLoginOpen} className='w-20 h-7 border border-black hover:text-black hover:bg-green-100 font-semibold'>Login</button>
-                        </div>
+
+                <div ref={focRef} className={`${headerPath && 'text-white '} flex space-x-3`}>
+                    <div className='relative flex w-52  overflow-x-hidden  '>
+                        <input
+                            ref={searchRef}
+                            type="text"
+                            placeholder='Search'
+                            className={`${search ? 'translate-x-0 transition duration-150' : 'translate-x-52'} ${!headerPath && 'bg-indigo-50'} w-full text-black pl-2 outline-none`}
+                        />
+                    </div>
+                    <button onClick={handleClickSearch}  className=' h-7   font-semibold'>
+                        <SearchIcon className='w-6' />
+                    </button>
+                    <div>
+                        <button onClick={handleLoginOpen} className='w-20 h-7 border border-black hover:text-black hover:bg-green-100 font-semibold'>Login</button>
+                    </div>
                     <div>
                         <button disabled={orderPath} onClick={handleOpen}
                                 className={`${orderPath ? ' bg-gray-300 text-white' : '  hover:bg-green-100 '} border border-black font-semibold w-20 h-7 `}>
@@ -78,6 +111,7 @@ const Header: FC<IHeader> = () => {
                         </button>
                     </div>
                 </div>
+
                 {loginOpen && (
                     <>
                         <div className={`fixed top-0 left-0 z-20 w-full h-full flex justify-center items-center `}>

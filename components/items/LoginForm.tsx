@@ -23,19 +23,19 @@ const LoginForm: FC<ILoginForm> = () => {
     return (
         <>
             {loginForm ? (
-                <div className='relative grid grid-cols-5'>
+                <div className='relative  grid grid-cols-5'>
                     <div className='col-span-5 md:col-span-3'>
                         <p className='absolute -top-10 right-0 font-bold text-2xl'>Login</p>
-                        <form onSubmit={handleSubmit} className='flex flex-col space-y-6  mt-3 px-10'>
+                        <form onSubmit={handleSubmit} className='flex flex-col space-y-6  mt-3 px-10 '>
                          <span className='flex flex-col'>
                                <label htmlFor="username" className='text-sm font-semibold text-gray-500'>Username</label>
-                               <input ref={loginFocus} type="text" id='username' className='border border-gray-400 outline-none px-2'/>
+                               <input ref={loginFocus} type="text" id='username' className='border border-gray-400 text-back outline-none px-2'/>
                          </span>
                             <span className='flex flex-col'>
                                <label htmlFor="email"
                                       className='text-sm font-semibold text-gray-500'>Email</label>
                                <input type="email" id='email'
-                                      className='border border-gray-400 outline-none px-2'/>
+                                      className='border border-gray-400 outline-none text-back px-2'/>
                           </span>
                             <div className='-translate-y-6'>
                                 <button className='text-sm font-semibold text-gray-400 hover:text-green-700'>forget password ?</button>
