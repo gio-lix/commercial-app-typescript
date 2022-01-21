@@ -23,7 +23,6 @@ const Products: NextPage = () => {
             <div className='px-2 ms:px-6 lg:px-14 '>
                 <p className='text-3xl text-center my-4'>Latest Products</p>
                 <hr/>
-
                 <div className=' flex space-x-3 justify-center mt-10  '>
                     <div className='hidden md:block flex space-x-4'>
                         <button onClick={() => setFilter(products)}

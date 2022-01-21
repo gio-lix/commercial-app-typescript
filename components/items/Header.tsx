@@ -74,8 +74,11 @@ const Header: FC<IHeader> = () => {
     }
     const openFromRightMenuCart = () => {
         setOpenRightMenu(false)
-        setOpen(true)
-
+        if (pathname === '/order') {
+            setOpenRightMenu(false)
+        } else {
+           setOpen(true)
+        }
     }
 
 
@@ -260,7 +263,7 @@ const Header: FC<IHeader> = () => {
                                 <p className={`text-gray-500 uppercase font-bold`}>Login</p>
                             </div>
                             <div onClick={() => openFromRightMenuCart()} className=' h-10 flex justify-center items-center border-t border-gray-400 cursor-pointer '>
-                                <p className='text-gray-500 uppercase font-bold'>Cart {cart?.length}</p>
+                                <p className='text-gray-500 uppercase font-bold'>Cart {cart?.length > 0 &&  cart?.length}</p>
                             </div>
                         </div>
                     </div>
