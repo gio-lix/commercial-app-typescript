@@ -32,8 +32,8 @@ const CartPage: FC<NIProductsTypes> = ({title,id, image, qty, price }) => {
         <>
             <div className={`${orderPath && ' '}`}>
                 <div className={`${orderPath ? '  flex flex-col justify-center ' : '  flex flex-col'} relative flex flex-col justify-evenly h-36 border-t border-gray-400 group `}>
-                    <div className=' absolute z-30 hidden group-hover:inline-flex bg-opacity-40 h-full w-28  right-0 top-0 bg-black flex items-center justify-center '>
-                        <button onClick={handleClickDelete} className='text-3xl font-bold text-white'>&times;</button>
+                    <div onClick={handleClickDelete}  className=' absolute z-30 hidden group-hover:inline-flex bg-opacity-40 h-10 w-10  right-0 top-0 bg-black flex items-center  justify-center cursor-pointer '>
+                        <p className='text-3xl font-bold text-white -translate-y-1'>&times;</p>
                     </div>
                     <div className={`flex justify-between items-center `}>
                         <div className={`${orderPath ? 'flex flex-row w-full' : 'flex flex-col'}`}>
@@ -58,7 +58,7 @@ const CartPage: FC<NIProductsTypes> = ({title,id, image, qty, price }) => {
                     </div>
 
                 </div>
-                <div className='bg-red-400'>   </div>
+                {/*<div className='bg-red-400'>   </div>*/}
             </div>
         </>
     )

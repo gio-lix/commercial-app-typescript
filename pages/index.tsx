@@ -27,7 +27,7 @@ const Home: NextPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex absolute z-20 bottom-0  w-full invisible md:visible'>
+                <div className='flex absolute z-20 bottom-0  w-full hidden md:inline-flex'>
                     <section className='grow h-36 rounded-tr-[60px] bg-white flex justify-evenly pt-2 '>
                         <div className='w-32 h-32  font-semibold text-gray-600'>
                             <div className='w-9 h-9 p-0.5  bg-yellow-400 rounded-lg'> <ChartBarIcon className='text-white' />  </div>
