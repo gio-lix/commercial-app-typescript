@@ -26,7 +26,7 @@ export const productReducer = (state = initialState, action :any) => {
     }
 }
 
-const initialStateId: any = {
+const initialStateId: any  = {
     productsId: [],
     errors: ''
 

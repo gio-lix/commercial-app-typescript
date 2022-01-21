@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         props: {data: null},
     }
 })
-//
+
 // export const getStaticProps: GetStaticProps = wrapper.getStaticProps(store => async ({params}: any) => {
 //     store.dispatch(requestProductsById(params.id))
 //     store.dispatch(END)

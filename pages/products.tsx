@@ -11,7 +11,6 @@ import {IProductsTypes} from "../redux/types";
 
 const Products: NextPage = () => {
     const {products,errors} = useSelector((data:any) => data.productReducer)
-    console.log(errors.length)
     const [filter, setFilter] = useState<IProductsTypes[]>(products);
 
     const filterData = (pro: string) => {
