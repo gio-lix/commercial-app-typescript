@@ -167,7 +167,7 @@ const Header: FC<IHeader> = () => {
                 {open && (
                     <>
                         <div onClick={() => setOpen(false)} className='fixed top-0 left-0 bottom-0 z-20 w-full  '>   </div>
-                        <div className={`absolute   top-14 left-0 md:left-auto md:right-6 z-30 w-full md:w-72   bg-white w-full shadow-2xl p-1`}>
+                        <div className={`${cart.length !== 0 && ' bg-white'} absolute   top-14 left-0 md:left-auto md:right-6 z-30 w-full md:w-72   w-full shadow-2xl p-1`}>
                             {cart.length > 0 ? (
                                 <>
                                     <div className='absolute top-0 left-0 px-2 w-full flex justify-between bg-indigo-50 '>
@@ -189,7 +189,7 @@ const Header: FC<IHeader> = () => {
                                     </div>
                                 </>
                             ) : (
-                                <div className='h-20 bg-white flex items-center justify-center'>
+                                <div className={`${headerPath ? 'bg-black bg-opacity-50' : 'bg-white'} h-20  flex items-center justify-center`}>
                                     <p className='text-xl text-gray-300'>Cart Is Empty</p>
                                 </div>
                             )}
