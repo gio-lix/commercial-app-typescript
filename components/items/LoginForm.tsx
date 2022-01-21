@@ -14,9 +14,7 @@ const LoginForm: FC<ILoginForm> = () => {
         e.preventDefault()
     }
     useEffect(() => {
-        if (loginFocus.current) {
-            loginFocus.current.focus()
-        }
+        if (loginFocus.current) loginFocus.current.focus()
     }, []);
 
 
@@ -24,9 +22,9 @@ const LoginForm: FC<ILoginForm> = () => {
         <>
             {loginForm ? (
                 <div className='relative  grid grid-cols-5'>
-                    <div className='col-span-5 md:col-span-3'>
+                    <div className='col-span-5 md:col-span-3 '>
                         <p className='absolute -top-10 right-0 font-bold text-2xl'>Login</p>
-                        <form onSubmit={handleSubmit} className='flex flex-col space-y-6  mt-3 px-10 '>
+                        <form onSubmit={handleSubmit} className='flex flex-col space-y-6  mt-3 pr-3 '>
                          <span className='flex flex-col'>
                                <label htmlFor="username" className='text-sm font-semibold text-gray-500'>Username</label>
                                <input ref={loginFocus} type="text" id='username' className='border border-gray-400 text-back outline-none px-2'/>
@@ -50,9 +48,8 @@ const LoginForm: FC<ILoginForm> = () => {
                               </p>
                           </span>
                         </form>
-
                     </div>
-                    <div className='col-span-5 md:col-span-2 flex flex-col space-y-4 mt-[30px] '>
+                    <div className='col-span-5 md:col-span-2 flex flex-col space-y-4 mt-[30px]  '>
                         <button  className='w-full h-10 font-bold border  text-gray-500 hover:bg-red-100 border-red-400'>
                             Sign with Google
                         </button>

@@ -17,7 +17,8 @@ const Order: NextPage = () => {
                          <CartPage {...el} key={el.id} />
                      ))}
                  </div>
-                 <div className=' col-span-7 fixed top-14 md:top-0  md:relative z-40 w-full left-0 bg-white md:col-span-2 px-4 border-b border-gray-400'>
+                 <div
+                     className=' col-span-7 fixed top-14 md:top-0  md:relative z-40 w-full left-0 bg-white md:col-span-2 px-4 border-b border-gray-400 md:border-white'>
                      <div className='sticky top-14 w-full h-auto md:h-36 md:border md:border-gray-300 p-2'>
                          <div className='flex justify-between'>
                              <p className='font-semibold uppercase'>Items</p>

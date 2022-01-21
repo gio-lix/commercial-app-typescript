@@ -9,7 +9,7 @@ import {
 } from "../../redux/reducers/cart/cart-action-type";
 
 
-const CartPage: FC<NIProductsTypes> = ({title,id, image, qty, price }) => {
+const CartPage: FC<NIProductsTypes> = ({title,id, image, rating, qty, price }) => {
     const {pathname} = useRouter()
     const {cart} = useSelector((state: any) => state.cartReducer)
     const dispatch = useDispatch()
@@ -27,7 +27,8 @@ const CartPage: FC<NIProductsTypes> = ({title,id, image, qty, price }) => {
         }
         dispatch(fetchCartQuantityDecrease(id))
     }
-
+    console.log(rating)
+    console.log(rating.rate)
     return (
         <>
             <div className={`${orderPath && ' '}`}>
@@ -51,6 +52,10 @@ const CartPage: FC<NIProductsTypes> = ({title,id, image, qty, price }) => {
                             <p className={`${orderPath ? 'col-span-4 text-lg ' : 'text-xs'}`}>{qty}</p>
                             {orderPath && <button  onClick={handleIncrease} className='w-7 h-7 bg-gray-400 text-white flex items-center justify-center hover:bg-gray-600'><span>+</span></button>}
                         </div>
+                    </div>
+                    <div className={`${orderPath ? ' w-full grid grid-cols-6' : 'flex justify-between items-center my-0.5'}`}>
+                        <p className={`${orderPath ? 'col-span-2 text-lg' : ' text-xs '} font-bold text-gray-600`}>rating</p>
+                        <p className={`${orderPath ? 'col-span-4 text-lg' : 'text-xs'}`}>{rating.rate}</p>
                     </div>
                     <div className={`${orderPath ? ' w-full grid grid-cols-6' : 'flex justify-between items-center my-0.5'}`}>
                         <p className={`${orderPath ? 'col-span-2 text-lg' : ' text-xs '} font-bold text-gray-600`}>Price</p>

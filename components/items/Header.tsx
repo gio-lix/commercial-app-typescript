@@ -7,7 +7,6 @@ import LoginForm from "./LoginForm";
 import {SearchIcon} from "@heroicons/react/solid";
 import {MenuIcon} from "@heroicons/react/outline";
 import {CogIcon} from "@heroicons/react/solid";
-import {route} from "next/dist/server/router";
 
 interface IHeader {
 
@@ -55,7 +54,7 @@ const Header: FC<IHeader> = () => {
         window.addEventListener("click", handleWindowClick)
         return () => window.removeEventListener('click', handleWindowClick)
     }, [search])
-    const handleWindowClick = (e: any) => {
+    const handleWindowClick = (e: SyntheticEvent | any) => {
         if (!e.path.includes(focRef.current)) setSearch(false)
     }
     const handleOpenMenu = () =>setOpenMenu(!openMenu)
@@ -237,14 +236,21 @@ const Header: FC<IHeader> = () => {
                         <div onClick={() => setOpenRightMenu(false)} className='w-full h-screen bg-black bg-opacity-30'> </div>
                         <div className={`${headerPath ? 'bg-black bg-opacity-50' : 'bg-white'} fixed z-20  w-full h-auto top-14 left-0`}>
                             <div className=' flex justify-center space-x-10 '>
-                                <input value={searchTerm} type="text" placeholder='Search you favorite items'
-                                       className={`${headerPath ? 'bg-black bg-opacity-50 text-white ' : 'bg-white text-black'} w-4/6  h-10 outline-none`}/>
+                                <form onSubmit={handleSubmitSearch}>
+                                    <input
+                                        onChange={handleTerm}
+                                        value={searchTerm}
+                                        type="text"
+                                        placeholder='Search you favorite items'
+                                        className={`${headerPath ? 'bg-black bg-opacity-50 text-white ' : 'bg-white text-black'} w-4/6  h-10 outline-none`}
+                                    />
+                                </form>
                             </div>
                             <div onClick={() => openFromRightMenuLogin()} className=' h-10 flex justify-center items-center border-t border-gray-400 cursor-pointer hover:text-white'>
                                 <p className={`text-gray-500 uppercase font-bold`}>Login</p>
                             </div>
                             <div onClick={() => openFromRightMenuCart()} className=' h-10 flex justify-center items-center border-t border-gray-400 cursor-pointer '>
-                                <p className='text-gray-500 uppercase font-bold'>Cart</p>
+                                <p className='text-gray-500 uppercase font-bold'>Cart {cart?.length}</p>
                             </div>
 
                         </div>

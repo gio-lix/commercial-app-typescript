@@ -5,7 +5,7 @@ export type IProductsTypes = {
     description?: string,
     category?: string,
     image?: string,
-    rating?: {}
+    rating?: any
 }
 export type NIProductsTypes = {
     qty?: number

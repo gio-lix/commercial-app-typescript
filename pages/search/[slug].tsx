@@ -9,6 +9,7 @@ import {useRouter} from "next/router";
 import {log} from "util";
 import ProductsPage from "../../components/page/ProductsPage";
 import {IProductsTypes} from "../../redux/types";
+import {any} from "prop-types";
 
 
 const SearchPage: NextPage = () => {
@@ -25,11 +26,11 @@ const SearchPage: NextPage = () => {
         }
         dta()
     }, [query.slug])
-    console.log(searchResult?.filter((el: any) => console.log(el.title.toLowerCase())))
-    const dataF = searchResult?.filter((el: any) => el.title.toLowerCase().includes(query.slug))
 
-
-    console.log('loading',loading)
+    const dataFunc = (item: {}[]) => {
+        return item?.filter((el: any) => el.title.toLowerCase().includes(query.slug))
+            .sort((a:any, b:any) => b.price - a.price)
+    }
 
     return (
         <Layout>
@@ -38,22 +39,21 @@ const SearchPage: NextPage = () => {
             </div>
             {loading && (
                 <div className='flex justify-center'>
-                    <p>Loading</p>
+                    <p className='text-2xl text-gray-500'>Loading... </p>
                 </div>
             )}
-            {(!loading && dataF?.length > 0 ) && (
+            {(!loading && dataFunc(searchResult)?.length > 0 ) && (
                 <div className='grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4  justify-center gap-y-6 '>
-                    {dataF?.map((el: IProductsTypes) => (
+                    {dataFunc(searchResult)?.map((el: IProductsTypes) => (
                         <ProductsPage str={el} key={el.id}/>
                     ))}
                 </div>
             )}
-            {(!loading && dataF?.length === 0 ) && (
+            {(!loading && dataFunc(searchResult)?.length === 0 ) && (
                 <div className='flex justify-center'>
                     <p>Not Found</p>
                 </div>
             )}
-
         </Layout>
     )
 }

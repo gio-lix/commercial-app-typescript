@@ -19,7 +19,7 @@ const RegisterForm: FC<IRegisterForm> = ({setLoginForm}) => {
       <div className='relative grid grid-cols-5'>
           <div className='col-span-5 md:col-span-3'>
               <p  className='absolute -top-10 right-0 font-bold text-2xl'>Registration</p>
-              <form onSubmit={handleSubmitRegister} className='flex flex-col space-y-6 mt-3 px-10'>
+              <form onSubmit={handleSubmitRegister} className='flex flex-col space-y-6 mt-3 pr-3'>
                         <span className='flex flex-col'>
                               <label htmlFor="username" className='text-sm font-semibold text-gray-500'>Username</label>
                               <input ref={registerFocus} type="text" id='username' className='border border-gray-400 outline-none px-2'/>
