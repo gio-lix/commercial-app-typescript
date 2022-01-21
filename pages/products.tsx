@@ -10,15 +10,14 @@ import {IProductsTypes} from "../redux/types";
 
 
 const Products: NextPage = () => {
-    const {products} = useSelector((data:any) => data.productReducer)
+    const {products,errors} = useSelector((data:any) => data.productReducer)
+    console.log(errors.length)
     const [filter, setFilter] = useState<IProductsTypes[]>(products);
 
     const filterData = (pro: string) => {
-        const productsData = products.filter((el: IProductsTypes) => el.category === pro)
+        const productsData = products?.filter((el: IProductsTypes) => el.category === pro)
         setFilter(productsData)
     }
-
-
 
     return (
         <Layout>
@@ -47,6 +46,11 @@ const Products: NextPage = () => {
                         </button>
                     </div>
                 </div>
+                {errors.length > 0 && (
+                    <div className='flex justify-center mt-36 '>
+                        <p className='text-2xl text-gray-400'>{errors}</p>
+                    </div>
+                )}
                 <div className='grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4  justify-center gap-y-6 my-6 '>
                     {filter?.map((el: IProductsTypes) => (
                         <ProductsPage str={el} key={el.id}/>

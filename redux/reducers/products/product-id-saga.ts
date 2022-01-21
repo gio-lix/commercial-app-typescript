@@ -7,7 +7,7 @@ export function* getProductById (action: any) {
         const data: Response = yield call(fetchProducts.getProductsId, action.payload)
         yield put({type: productActionType.FETCH_PRODUCTS_SUCCESS_ID, payload: data})
     } catch (err) {
-        console.log(err)
+        yield put({type: productActionType.FETCH_PRODUCTS_ERROR_ID,  payload: {message: 'A few errors occurred during the fetch'}})
     }
 }
 

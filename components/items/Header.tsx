@@ -57,8 +57,14 @@ const Header: FC<IHeader> = () => {
     const handleWindowClick = (e: SyntheticEvent | any) => {
         if (!e.path.includes(focRef.current)) setSearch(false)
     }
-    const handleOpenMenu = () =>setOpenMenu(!openMenu)
-    const handleRightMenuOpen = () => setOpenRightMenu(!openRightMenu)
+    const handleOpenMenu = () => {
+        setOpenMenu(!openMenu)
+        setOpenRightMenu(false)
+    }
+    const handleRightMenuOpen = () => {
+        setOpenRightMenu(!openRightMenu)
+        setOpenMenu(false)
+    }
 
     const openFromRightMenuLogin = () => {
         setOpenRightMenu(false)
@@ -68,6 +74,7 @@ const Header: FC<IHeader> = () => {
         setOpenRightMenu(false)
         setOpen(true)
     }
+
 
 
 
@@ -236,7 +243,7 @@ const Header: FC<IHeader> = () => {
                         <div onClick={() => setOpenRightMenu(false)} className='w-full h-screen bg-black bg-opacity-30'> </div>
                         <div className={`${headerPath ? 'bg-black bg-opacity-50' : 'bg-white'} fixed z-20  w-full h-auto top-14 left-0`}>
                             <div className=' flex justify-center space-x-10 '>
-                                <form onSubmit={handleSubmitSearch}>
+                                <form onSubmit={handleSubmitSearch} className=' flex justify-center w-full sm:w-3/6'>
                                     <input
                                         onChange={handleTerm}
                                         value={searchTerm}
@@ -252,7 +259,6 @@ const Header: FC<IHeader> = () => {
                             <div onClick={() => openFromRightMenuCart()} className=' h-10 flex justify-center items-center border-t border-gray-400 cursor-pointer '>
                                 <p className='text-gray-500 uppercase font-bold'>Cart {cart?.length}</p>
                             </div>
-
                         </div>
                     </div>
                 )}

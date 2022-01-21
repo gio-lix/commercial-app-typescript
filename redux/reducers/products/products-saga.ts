@@ -6,10 +6,9 @@ import {fetchProducts} from "../../../pages/api";
 export function* getProducts() {
     try {
         const data: Response = yield call(fetchProducts.getProducts)
-        console.log('data', data)
         yield put({type: productActionType.FETCH_PRODUCTS_SUCCESS, payload: data})
     } catch (err) {
-        console.log(err)
+        yield put({type: productActionType.FETCH_PRODUCTS_ERROR, payload: {message: 'A few errors occurred during the fetch'}})
     }
 }
 

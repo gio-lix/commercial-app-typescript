@@ -4,10 +4,12 @@ import {IProductsTypes} from "../../types";
 
 interface IProducts {
     products: IProductsTypes[]
+    errors: string
 }
 
 const initialState: IProducts = {
-    products: []
+    products: [],
+    errors: ''
 }
 
 export const productReducer = (state = initialState, action :any) => {
@@ -17,13 +19,17 @@ export const productReducer = (state = initialState, action :any) => {
         }
         case productActionType.FETCH_PRODUCTS_SUCCESS:
             return {...state, products: action.payload}
+        case productActionType.FETCH_PRODUCTS_ERROR:
+            return {...state, errors: action.payload.message}
         default:
             return state
     }
 }
 
 const initialStateId: any = {
-    productsId: []
+    productsId: [],
+    errors: ''
+
 }
 
 export const productReducerId = (state = initialStateId, action :any) => {
@@ -33,6 +39,8 @@ export const productReducerId = (state = initialStateId, action :any) => {
         }
         case productActionType.FETCH_PRODUCTS_SUCCESS_ID:
             return {...state, productsId: action.payload}
+        case productActionType.FETCH_PRODUCTS_ERROR_ID:
+            return {...state, errors: action.payload.message}
         default:
             return state
     }
