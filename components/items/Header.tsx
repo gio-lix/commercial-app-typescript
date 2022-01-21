@@ -7,6 +7,7 @@ import LoginForm from "./LoginForm";
 import {SearchIcon} from "@heroicons/react/solid";
 import {MenuIcon} from "@heroicons/react/outline";
 import {CogIcon} from "@heroicons/react/solid";
+import {route} from "next/dist/server/router";
 
 interface IHeader {
 
@@ -20,6 +21,10 @@ const Header: FC<IHeader> = () => {
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [openRightMenu, setOpenRightMenu] = useState<boolean>(false);
     const [loginOpen, setLoginOpen] = useState<boolean>(false);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const handleTerm = (e: any) => setSearchTerm(e.target.value)
+
+
     const {cart} = useSelector((state: any) => state.cartReducer)
     const {pathname} = useRouter()
     const router = useRouter()
@@ -65,6 +70,15 @@ const Header: FC<IHeader> = () => {
         setOpen(true)
     }
 
+
+
+    const handleSubmitSearch = async (e: any) => {
+        e.preventDefault()
+        setSearchTerm('')
+        setSearch(false)
+        router.push(`/search/${searchTerm.toLowerCase()}`)
+    }
+
     return (
         <>
             <div className={`${headerPath && '   bg-opacity-0 z-40  ' } fixed bg-white z-50 top-0 h-14 w-full flex items-center justify-between px-2 ms:px-6 lg:px-14 `}>
@@ -104,14 +118,18 @@ const Header: FC<IHeader> = () => {
                 {/* search functions  */}
                 <div ref={focRef} className={`${headerPath && 'text-white '} hidden lg:inline-flex  flex space-x-3`}>
                     <div className='fixed right-0 flex w-72 h-7 top-[18px]  bg-opacity-20 pl-4'>
-                        <div className={`absolute right-60  z-20 flex w-52  overflow-x-hidden`}>
-                            <input
-                                ref={searchRef}
-                                type="text"
-                                placeholder='Search'
-                                className={`${search ? 'translate-x-0 transition duration-150' : 'translate-x-52'} ${!headerPath && 'bg-indigo-50'} w-full text-black pl-2 outline-none`}
-                            />
-                        </div>
+                        <form onSubmit={handleSubmitSearch}>
+                            <div className={`absolute right-60  z-20 flex w-52  overflow-x-hidden`}>
+                                <input
+                                    onChange={handleTerm}
+                                    value={searchTerm}
+                                    ref={searchRef}
+                                    type="text"
+                                    placeholder='Search'
+                                    className={`${search ? 'translate-x-0 transition duration-150' : 'translate-x-52'} ${!headerPath && 'bg-indigo-50'} w-full text-black pl-2 outline-none`}
+                                />
+                            </div>
+                        </form>
                         <button onClick={handleClickSearch}  className=' h-7 absolute z-30   font-semibold'>
                             <SearchIcon className='w-6' />
                         </button>
@@ -219,7 +237,7 @@ const Header: FC<IHeader> = () => {
                         <div onClick={() => setOpenRightMenu(false)} className='w-full h-screen bg-black bg-opacity-30'> </div>
                         <div className={`${headerPath ? 'bg-black bg-opacity-50' : 'bg-white'} fixed z-20  w-full h-auto top-14 left-0`}>
                             <div className=' flex justify-center space-x-10 '>
-                                <input type="text" placeholder='Search you favorite items'
+                                <input value={searchTerm} type="text" placeholder='Search you favorite items'
                                        className={`${headerPath ? 'bg-black bg-opacity-50 text-white ' : 'bg-white text-black'} w-4/6  h-10 outline-none`}/>
                             </div>
                             <div onClick={() => openFromRightMenuLogin()} className=' h-10 flex justify-center items-center border-t border-gray-400 cursor-pointer hover:text-white'>
