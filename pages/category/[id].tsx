@@ -17,14 +17,14 @@ const Item: NextPage = () => {
     }
 
     return (
-        <Layout>
+        <Layout hideSideMenu>
             {errors.length > 0 && (
                 <div className='flex justify-center mt-36 '>
                     <p className='text-2xl text-gray-400'>{errors}</p>
                 </div>
             )}
             {Object.values(productsId).length > 0 && (
-                <div className='grid grid-cols-2 mt-14 px-2'>
+                <div className='grid grid-cols-2  my-28 px-2'>
                     <div className=' flex justify-center  col-span-2 md:col-span-1'>
                         <img src={productsId?.image} className='h-72 w-72' alt="img"/>
                     </div>

@@ -8,10 +8,10 @@ interface ILayout {
     title?: string,
     keywords?: string,
     description?: string
+    hideSideMenu?: boolean
 }
 
-const Layout: FC<ILayout> = ({children, keywords, title, description}) => {
-    const {pathname} = useRouter()
+const Layout: FC<ILayout> = ({children, hideSideMenu, keywords, title, description}) => {
     return (
         <>
             <div>
@@ -24,7 +24,7 @@ const Layout: FC<ILayout> = ({children, keywords, title, description}) => {
                 <div>
                     {children}
                 </div>
-                {pathname === '/' && <Footer/>}
+                {hideSideMenu && <Footer/>}
             </div>
         </>
     )

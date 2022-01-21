@@ -40,10 +40,12 @@ const Header: FC<IHeader> = () => {
     const handleOpen = () => {
         setOpen(!open)
         setSearch(false)
+        setLoginOpen(false)
     }
     const handleLoginOpen = () => {
         setLoginOpen(!loginOpen)
         setSearch(false)
+        setOpen(false)
     }
     const handleClickSearch = () => setSearch(!search)
 
@@ -73,6 +75,7 @@ const Header: FC<IHeader> = () => {
     const openFromRightMenuCart = () => {
         setOpenRightMenu(false)
         setOpen(true)
+
     }
 
 

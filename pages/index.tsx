@@ -16,7 +16,7 @@ const Home: NextPage = () => {
     ]
 
     return (
-        <Layout>
+        <Layout hideSideMenu>
             <div className='relative'>
                 <div className='w-full h-[530px] relative '>
                     <Image src={images[image].img} layout='fill' loading='lazy' className='absolute top-0' alt='image' />
