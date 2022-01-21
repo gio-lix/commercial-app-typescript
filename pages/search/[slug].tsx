@@ -34,7 +34,7 @@ const SearchPage: NextPage = () => {
 
     return (
         <Layout>
-            <div className=' w-full h-52 mt-20 flex justify-center '>
+            <div className=' w-full h-20 mt-20 flex justify-center '>
                 <p className='text-gray-400 text-3xl'>Search result</p>
             </div>
             {loading && (
@@ -43,7 +43,7 @@ const SearchPage: NextPage = () => {
                 </div>
             )}
             {(!loading && dataFunc(searchResult)?.length > 0 ) && (
-                <div className='grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4  justify-center gap-y-6 '>
+                <div className='grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4  place-content-center  gap-y-6 '>
                     {dataFunc(searchResult)?.map((el: IProductsTypes) => (
                         <ProductsPage str={el} key={el.id}/>
                     ))}

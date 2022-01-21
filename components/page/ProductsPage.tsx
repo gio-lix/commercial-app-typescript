@@ -41,7 +41,6 @@ const ProductsPage: FC<IProductsPage> = ({str}) => {
         }
     }
     const {x, y} = useMouse()
-    console.log(x)
     return (
         <>
             <div key={str.id} className='flex justify-center items-center h-96 group'>
