@@ -1,4 +1,3 @@
-import {FC} from "react"
 import {NextPage} from "next";
 import Layout from "../components/Layout";
 
@@ -6,8 +5,8 @@ import Layout from "../components/Layout";
 const About: NextPage = () => {
   return (
      <Layout>
-        <div>
-            About
+        <div className='w-full h-screen flex items-center justify-center '>
+            <p className='text-3xl font-bold text-gray-400 uppercase'>About page</p>
         </div>
      </Layout>
   )

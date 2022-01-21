@@ -80,7 +80,7 @@ const Header: FC<IHeader> = () => {
 
     return (
         <>
-            <div className={`${headerPath && '   bg-opacity-0 z-40  ' } fixed bg-white z-50 top-0 h-14 w-full flex items-center justify-between px-2 ms:px-6 lg:px-14 `}>
+            <div className={`${headerPath ? ' bg-black  bg-opacity-40 z-50  ' : 'bg-white' } fixed  z-50 top-0 h-14 w-full flex items-center justify-between px-2 ms:px-6 lg:px-14 `}>
                 <button onClick={handleOpenMenu} className='w-10 h-10   md:hidden text-3xl flex item-center justify-center'>
                     <MenuIcon className={`${headerPath ? 'text-white' : 'text-black'} w-8`} />
                 </button>
@@ -198,8 +198,8 @@ const Header: FC<IHeader> = () => {
                 )}
                 {openMenu && (
                     <div className='fixed w-full h-screen z-30 left-0 top-14'>
-                        <div onClick={() => setOpenMenu(false)} className='w-full h-screen bg-black bg-opacity-30'> </div>
-                        <div className={`${headerPath ? 'bg-black bg-opacity-50' : 'bg-white'} w-72 h-full  absolute top-0`}>
+                        <div onClick={() => setOpenMenu(false)} className='w-full h-screen '> </div>
+                        <div className={`${headerPath ? 'bg-black bg-opacity-40' : 'bg-white'} w-full sm:w-72 h-full  absolute top-0`}>
                             <nav className='w-full mt-4'>
                                 <ul className='flex flex-col space-y-6 w-full '>
                                     <li
