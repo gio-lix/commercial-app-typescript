@@ -31,11 +31,11 @@ const RegisterForm: FC<IRegisterForm> = ({setLoginForm}) => {
                                      className='border border-gray-400 outline-none px-2'/>
                        </span>
                   <span className='flex flex-col'>
-                              <label htmlFor="password" className='text-sm font-semibold text-gray-500'>Username</label>
+                              <label htmlFor="password" className='text-sm font-semibold text-gray-500'>Password</label>
                               <input type="password" id='password' className='border border-gray-400 outline-none px-2'/>
                        </span>
                   <span className='flex flex-col'>
-                              <label htmlFor="confirmPassword" className='text-sm font-semibold text-gray-500'>Username</label>
+                              <label htmlFor="confirmPassword" className='text-sm font-semibold text-gray-500'>Confirm password</label>
                               <input type="password" id='confirmPassword' className='border border-gray-400 outline-none px-2'/>
                        </span>
 
