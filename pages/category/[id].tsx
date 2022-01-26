@@ -60,7 +60,7 @@ export default Item
 //     }
 // })
 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps(store => async ({params}: any) => {
+export const getStaticProps = wrapper.getStaticProps(store => async ({params}: any) => {
     store.dispatch(requestProductsById(params.id))
     store.dispatch(END)
     await store.sagaTask.toPromise()
