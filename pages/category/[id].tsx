@@ -68,7 +68,7 @@ export const getStaticProps = wrapper.getStaticProps(store => async ({params}: a
 })
 export const getStaticPaths = async () => {
     const data = await fetchProducts.getProducts()
-    const paths = data.map((el: any) => ({params: {id: el.id.toString()}}))
+    const paths = data?.map((el: any) => ({params: {id: el.id.toString()}}))
     return {
         paths,
         fallback: true
