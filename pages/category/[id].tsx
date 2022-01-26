@@ -5,6 +5,7 @@ import {wrapper} from "../../redux/store";
 import { requestProductsById} from "../../redux/reducers/products/action-type";
 import {END} from "redux-saga";
 import {fetchCartRequest} from "../../redux/reducers/cart/cart-action-type";
+import {fetchProducts} from "../api/"
 
 
 const Item: NextPage = () => {
